@@ -1,11 +1,8 @@
 package edu.austral.prog2_2018c2;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+
+
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -13,8 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Board extends JPanel implements Runnable, Commons {
 
@@ -34,7 +30,8 @@ public class Board extends JPanel implements Runnable, Commons {
 
     private Thread animator;
 
-    public Board() {
+
+    public Board()  {
 
         initBoard();
     }
@@ -43,12 +40,16 @@ public class Board extends JPanel implements Runnable, Commons {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
+        //----------------------------------------------
+        //AppBar ap= new AppBar();
+        //----------------------------------------------
         d = new Dimension(BOARD_WIDTH, BOARD_HEIGHT);
         setBackground(Color.black);
-
         gameInit();
         setDoubleBuffered(true);
     }
+
+
 
     @Override
     public void addNotify() {
@@ -61,10 +62,10 @@ public class Board extends JPanel implements Runnable, Commons {
 
         aliens = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 4; i++) {       //4     cant de filas de enemigos
+            for (int j = 0; j < 8; j++) {   //6     cant de columnas de enemigos
 
-                Alien alien = new Alien(ALIEN_INIT_X + 18 * j, ALIEN_INIT_Y + 18 * i);
+                Alien alien = new Alien(ALIEN_INIT_X + 18 * j, ALIEN_INIT_Y + 18 * i); //18 Localiz del enemigo
                 aliens.add(alien);
             }
         }
@@ -136,9 +137,17 @@ public class Board extends JPanel implements Runnable, Commons {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.black);
+        g.setColor(Color.black);    //black  Fondo del juego
+        /*
+        Sprite hh = new Sprite();
+        ImageIcon gg= new ImageIcon(fondo);
+        hh.setImage(gg.getImage());
+        hh.setX(0);
+        hh.setY(0);
+        */
+
         g.fillRect(0, 0, d.width, d.height);
-        g.setColor(Color.green);
+        g.setColor(Color.red);    //green   Color de la linea
 
         if (ingame) {
 
@@ -157,10 +166,10 @@ public class Board extends JPanel implements Runnable, Commons {
 
         Graphics g = this.getGraphics();
 
-        g.setColor(Color.black);
+        g.setColor(Color.black);    //black  gameOver fondo
         g.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 
-        g.setColor(new Color(0, 32, 48));
+        g.setColor(new Color(0, 32, 48));   //color de adentro del gameOver
         g.fillRect(50, BOARD_WIDTH / 2 - 30, BOARD_WIDTH - 100, 50);
         g.setColor(Color.white);
         g.drawRect(50, BOARD_WIDTH / 2 - 30, BOARD_WIDTH - 100, 50);
