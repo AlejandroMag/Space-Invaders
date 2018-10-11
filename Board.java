@@ -63,7 +63,7 @@ public class Board extends JPanel implements Runnable, Commons {
         aliens = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {       //4     cant de filas de enemigos
-            for (int j = 0; j < 8; j++) {   //6     cant de columnas de enemigos
+            for (int j = 0; j < 6; j++) {   //6     cant de columnas de enemigos
 
                 Alien alien = new Alien(ALIEN_INIT_X + 18 * j, ALIEN_INIT_Y + 18 * i); //18 Localiz del enemigo
                 aliens.add(alien);
@@ -138,7 +138,7 @@ public class Board extends JPanel implements Runnable, Commons {
         super.paintComponent(g);
 
         g.setColor(Color.black);    //black  Fondo del juego
-        /*
+        /*              YO
         Sprite hh = new Sprite();
         ImageIcon gg= new ImageIcon(fondo);
         hh.setImage(gg.getImage());
@@ -189,6 +189,8 @@ public class Board extends JPanel implements Runnable, Commons {
 
             ingame = false;
             message = "Game won!";
+           // new AppBar()      creo q fui yo
+
         }
 
         // player
@@ -355,6 +357,7 @@ public class Board extends JPanel implements Runnable, Commons {
         }
 
         gameOver();
+
     }
 
     private class TAdapter extends KeyAdapter {

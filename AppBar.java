@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class AppBar extends JFrame implements MenuListener ,ActionListener, KeyListener {
+public class AppBar extends JFrame implements MenuListener ,ActionListener, KeyListener{
 
     //Barra del Menu
     private JMenuBar menuBar;
@@ -51,6 +51,7 @@ public class AppBar extends JFrame implements MenuListener ,ActionListener, KeyL
 
         //Crear la primera linea del Menu, Game
             Game = new JMenu("Game...");
+            Game.setMnemonic(KeyEvent.VK_S);
             Game.addMenuListener(this);
             menuBar.add(Game);  //Agregar al menu bar
 
@@ -73,6 +74,7 @@ public class AppBar extends JFrame implements MenuListener ,ActionListener, KeyL
 
         //Sub-de la Lista Menu --> Me tira una foto x solo por probar
             Creditos= new JMenuItem("Creditos");
+            Creditos.setMnemonic(KeyEvent.VK_C);
             Creditos.addActionListener(new Action1());
             Help.add(Creditos); //Agregar al menu bar
 
@@ -174,6 +176,13 @@ public class AppBar extends JFrame implements MenuListener ,ActionListener, KeyL
         if(e.getKeyChar()==(char)27){   //codigo ascII de "esc"
             System.exit(0); //Cerrar programa al tocar "esc"
         }
+        if(e.getKeyChar()== 'c'){
+            System.out.println("ccccc");
+            new Action1();
+        }
+        if(e.getKeyChar()=='s'){
+            new Action3();
+        }
     }
 
     @Override
@@ -198,3 +207,56 @@ public class AppBar extends JFrame implements MenuListener ,ActionListener, KeyL
         //No es utilizado
     }
 }
+
+
+
+
+
+
+
+
+
+    class Action1 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFrame ff = new JFrame("Clicked");
+            ff.setVisible(true);
+            ff.setResizable(false);
+            ff.setSize(200, 200);
+            JLabel cred = new JLabel("-Medina,Maglio, Gayo");
+            JPanel panel = new JPanel();
+            panel.add(cred);
+            ff.add(panel);
+        }
+    }
+    class Action2 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+    }
+    class Action3 extends JFrame implements ActionListener,Commons {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // SpaceInvaders ex= new SpaceInvaders(1);
+            //ex.setVisible(true);
+            Action3 ff= new Action3();
+            ff.setVisible(true);
+
+        }
+        Action3(){
+            add(new Board());
+            setTitle("Space Invaders");
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  //Se puede cerrar el JFrame sin cerrar todo
+            setSize(BOARD_WIDTH, BOARD_HEIGHT);
+            setLocationRelativeTo(null);
+            setResizable(false);
+            Sprite ej = new Sprite();   //de aca lo metimos nosotros
+            ej.setVisible(true);
+        }
+    }
+
+
+
+
